@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="250" viewBox="0 0 600 250">
+  <!-- Background -->
+  <rect width="600" height="250" fill="#1e1e1e"/>
+  
+  <!-- Split view -->
+  
+  <!-- Left: Explorer sidebar -->
+  <rect x="0" y="0" width="250" height="250" fill="#252526"/>
+  <rect x="0" y="0" width="250" height="35" fill="#2d2d30"/>
+  <text x="10" y="22" font-family="Segoe UI, Arial" font-size="11" fill="#cccccc" font-weight="bold">EXPLORER</text>
+  
+  <!-- Rhiza Repositories section in Explorer -->
+  <g transform="translate(0, 45)">
+    <rect x="0" y="0" width="250" height="25" fill="#37373d"/>
+    <text x="25" y="17" font-family="Segoe UI, Arial" font-size="11" fill="#cccccc" font-weight="bold">RHIZA REPOSITORIES</text>
+    <path d="M 12 9 L 17 13 L 12 17" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+    
+    <!-- Repository list -->
+    <g transform="translate(10, 35)">
+      <text x="20" y="0" font-family="Consolas, monospace" font-size="11" fill="#cccccc">rhiza-frontend</text>
+      <text x="20" y="14" font-family="Consolas, monospace" font-size="9" fill="#858585">main · clean · ↑0 ↓2</text>
+      
+      <text x="20" y="40" font-family="Consolas, monospace" font-size="11" fill="#cccccc">rhiza-backend</text>
+      <text x="20" y="54" font-family="Consolas, monospace" font-size="9" fill="#858585">develop · dirty · ↑1 ↓0</text>
+      
+      <text x="20" y="80" font-family="Consolas, monospace" font-size="11" fill="#cccccc">rhiza-docs</text>
+      <text x="20" y="94" font-family="Consolas, monospace" font-size="9" fill="#858585">main · clean · ↑0 ↓0</text>
+    </g>
+  </g>
+  
+  <!-- Right: Editor area -->
+  <rect x="250" y="0" width="350" height="250" fill="#1e1e1e"/>
+  
+  <!-- File tab -->
+  <rect x="250" y="0" width="120" height="35" fill="#2d2d30"/>
+  <text x="265" y="22" font-family="Segoe UI, Arial" font-size="11" fill="#cccccc">README.md</text>
+  
+  <!-- Editor content -->
+  <g transform="translate(265, 50)">
+    <text x="0" y="0" font-family="Consolas, monospace" font-size="11" fill="#858585"># Rhiza Project</text>
+    <text x="0" y="25" font-family="Consolas, monospace" font-size="11" fill="#cccccc">Welcome to Rhiza Manager</text>
+    <text x="0" y="40" font-family="Consolas, monospace" font-size="11" fill="#cccccc">documentation.</text>
+    <text x="0" y="70" font-family="Consolas, monospace" font-size="11" fill="#858585">## Features</text>
+    <text x="0" y="95" font-family="Consolas, monospace" font-size="11" fill="#cccccc">- View all repos at once</text>
+    <text x="0" y="110" font-family="Consolas, monospace" font-size="11" fill="#cccccc">- Track Git status</text>
+    <text x="0" y="125" font-family="Consolas, monospace" font-size="11" fill="#cccccc">- Bulk operations</text>
+  </g>
+  
+  <!-- Annotation -->
+  <text x="260" y="240" font-family="Segoe UI, Arial" font-size="10" fill="#858585" font-style="italic">Rhiza Repositories view in Explorer sidebar →</text>
+</svg>

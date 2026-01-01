@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#1e1e1e"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="400" height="35" fill="#252526"/>
+  <text x="10" y="22" font-family="Segoe UI, Arial" font-size="13" fill="#cccccc" font-weight="bold">RHIZA REPOSITORIES</text>
+  
+  <!-- Refresh icon -->
+  <circle cx="360" cy="17" r="12" fill="#3c3c3c"/>
+  <path d="M 357 14 L 357 20 M 357 14 L 354 17" stroke="#cccccc" stroke-width="1.5" fill="none"/>
+  <path d="M 363 20 L 363 14 M 363 20 L 366 17" stroke="#cccccc" stroke-width="1.5" fill="none"/>
+  
+  <!-- Menu dots -->
+  <circle cx="380" cy="15" r="1.5" fill="#cccccc"/>
+  <circle cx="380" cy="19" r="1.5" fill="#cccccc"/>
+  <circle cx="380" cy="23" r="1.5" fill="#cccccc"/>
+  
+  <!-- Repository items -->
+  <g transform="translate(10, 50)">
+    <!-- Repo 1 - Clean state -->
+    <text x="20" y="15" font-family="Consolas, monospace" font-size="13" fill="#cccccc">repo1</text>
+    <text x="100" y="15" font-family="Consolas, monospace" font-size="11" fill="#858585">main · clean · ↑0 ↓0</text>
+    <circle cx="5" cy="11" r="4" fill="#3794ff"/>
+    
+    <!-- Repo 2 - Dirty state -->
+    <text x="20" y="45" font-family="Consolas, monospace" font-size="13" fill="#cccccc">repo2</text>
+    <text x="100" y="45" font-family="Consolas, monospace" font-size="11" fill="#858585">main · dirty · ↑0 ↓0</text>
+    <circle cx="5" cy="41" r="4" fill="#cca700"/>
+    
+    <!-- Repo 3 - Clean with commits ahead -->
+    <text x="20" y="75" font-family="Consolas, monospace" font-size="13" fill="#cccccc">repo3</text>
+    <text x="100" y="75" font-family="Consolas, monospace" font-size="11" fill="#858585">main · clean · ↑2 ↓0</text>
+    <circle cx="5" cy="71" r="4" fill="#3794ff"/>
+    
+    <!-- Repo 4 - Clean with commits behind -->
+    <text x="20" y="105" font-family="Consolas, monospace" font-size="13" fill="#cccccc">repo4</text>
+    <text x="100" y="105" font-family="Consolas, monospace" font-size="11" fill="#858585">develop · clean · ↑0 ↓3</text>
+    <circle cx="5" cy="101" r="4" fill="#89d185"/>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(10, 230)">
+    <text x="0" y="0" font-family="Segoe UI, Arial" font-size="10" fill="#858585" font-style="italic">Status indicators:</text>
+    <text x="0" y="15" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• Branch name</text>
+    <text x="0" y="30" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• clean/dirty (uncommitted changes)</text>
+    <text x="0" y="45" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• ↑commits ahead ↓commits behind</text>
+  </g>
+</svg>
