@@ -35,12 +35,127 @@ __export(extension_exports, {
 });
 module.exports = __toCommonJS(extension_exports);
 var vscode = __toESM(require("vscode"));
-function activate(context) {
-  console.log('Congratulations, your extension "rhiza-manager" is now active!');
-  const disposable = vscode.commands.registerCommand("rhiza-manager.helloWorld", () => {
-    vscode.window.showInformationMessage("Hello World from Rhiza-Manager!");
+var import_child_process = require("child_process");
+var fs = __toESM(require("fs"));
+var path = __toESM(require("path"));
+function runGitCommand(repoPath, command) {
+  return new Promise((resolve, reject) => {
+    (0, import_child_process.exec)(command, { cwd: repoPath }, (err, stdout, stderr) => {
+      if (err) {
+        reject(stderr || err.message);
+      } else {
+        resolve(stdout.trim());
+      }
+    });
   });
-  context.subscriptions.push(disposable);
+}
+async function getRepoStatus(repoPath) {
+  try {
+    const branch = await runGitCommand(repoPath, "git branch --show-current") || "detached";
+    const dirtyOutput = await runGitCommand(repoPath, "git status --porcelain");
+    const dirty = dirtyOutput.length > 0;
+    let ahead = 0, behind = 0;
+    try {
+      const revList = await runGitCommand(
+        repoPath,
+        "git rev-list --left-right --count HEAD...@{upstream}"
+      );
+      [ahead, behind] = revList.split("	").map(Number);
+    } catch {
+    }
+    return { branch, dirty, ahead, behind };
+  } catch {
+    return { branch: "unknown", dirty: false, ahead: 0, behind: 0 };
+  }
+}
+var RepoItem = class extends vscode.TreeItem {
+  constructor(repoPath, label, status) {
+    super(label, vscode.TreeItemCollapsibleState.None);
+    this.repoPath = repoPath;
+    this.label = label;
+    this.status = status;
+    this.tooltip = repoPath;
+    this.description = status;
+    this.contextValue = "repo";
+  }
+};
+var RepoProvider = class {
+  _onDidChangeTreeData = new vscode.EventEmitter();
+  onDidChangeTreeData = this._onDidChangeTreeData.event;
+  refresh() {
+    this._onDidChangeTreeData.fire(void 0);
+  }
+  getTreeItem(item) {
+    return item;
+  }
+  async getChildren() {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders) return [];
+    const repos = [];
+    for (const folder of folders) {
+      const root = folder.uri.fsPath;
+      for (const entry of fs.readdirSync(root)) {
+        const fullPath = path.join(root, entry);
+        if (fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, ".git"))) {
+          const status = await getRepoStatus(fullPath);
+          const desc = `${status.branch} \xB7 ${status.dirty ? "dirty" : "clean"} \xB7 \u2191${status.ahead} \u2193${status.behind}`;
+          repos.push(new RepoItem(fullPath, entry, desc));
+        }
+      }
+    }
+    return repos;
+  }
+};
+function activate(context) {
+  const provider = new RepoProvider();
+  vscode.window.registerTreeDataProvider("repoManagerView", provider);
+  context.subscriptions.push(
+    vscode.commands.registerCommand("repoManager.refresh", () => provider.refresh())
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("repoManager.pullAll", async () => {
+      const repos = await provider.getChildren();
+      await vscode.window.withProgress(
+        {
+          location: vscode.ProgressLocation.Notification,
+          title: "Pulling all repositories"
+        },
+        async () => {
+          for (const repo of repos) {
+            try {
+              await runGitCommand(repo.repoPath, "git pull");
+              vscode.window.showInformationMessage(`\u2705 Pulled ${repo.label}`);
+            } catch (err) {
+              vscode.window.showErrorMessage(`\u274C ${repo.label}: ${err}`);
+            }
+          }
+          provider.refresh();
+        }
+      );
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("repoManager.fetchAll", async () => {
+      const repos = await provider.getChildren();
+      await vscode.window.withProgress(
+        {
+          location: vscode.ProgressLocation.Notification,
+          title: "Fetching all repositories"
+        },
+        async () => {
+          for (const repo of repos) {
+            try {
+              await runGitCommand(repo.repoPath, "git fetch");
+              vscode.window.showInformationMessage(`\u2705 Fetched ${repo.label}`);
+            } catch (err) {
+              vscode.window.showErrorMessage(`\u274C ${repo.label}: ${err}`);
+            }
+          }
+          provider.refresh();
+        }
+      );
+    })
+  );
 }
 function deactivate() {
 }

@@ -25,7 +25,8 @@
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "check-types": "tsc --noEmit",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "pretest": "tsc -p . && node esbuild.js",
+    "test": "vscode-test"
   },	
   "devDependencies": {
     "@types/vscode": "^1.107.0",

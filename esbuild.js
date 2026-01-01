@@ -4,7 +4,7 @@ esbuild.build({
   entryPoints: ["src/extension.ts"],
   bundle: true,
   platform: "node",
-  outfile: "out/extension.js",
+  outfile: "dist/extension.js",
   external: ["vscode"],
   sourcemap: true
 }).catch(() => process.exit(1));
