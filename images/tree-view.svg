@@ -44,6 +44,6 @@
     <text x="0" y="0" font-family="Segoe UI, Arial" font-size="10" fill="#858585" font-style="italic">Status indicators:</text>
     <text x="0" y="15" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• Branch name</text>
     <text x="0" y="30" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• clean/dirty (uncommitted changes)</text>
-    <text x="0" y="45" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• ↑commits ahead ↓commits behind</text>
+    <text x="0" y="45" font-family="Segoe UI, Arial" font-size="10" fill="#858585">• ↑N commits ahead ↓N commits behind</text>
   </g>
 </svg>

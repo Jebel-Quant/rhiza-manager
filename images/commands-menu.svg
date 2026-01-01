@@ -26,10 +26,10 @@
   <!-- Repositories (background) -->
   <g transform="translate(10, 50)">
     <text x="20" y="15" font-family="Consolas, monospace" font-size="13" fill="#858585">repo1</text>
-    <text x="100" y="15" font-family="Consolas, monospace" font-size="11" fill="#585858">main · clean · ↑0 ↓0</text>
+    <text x="100" y="15" font-family="Consolas, monospace" font-size="11" fill="#858585">main · clean · ↑0 ↓0</text>
     
     <text x="20" y="45" font-family="Consolas, monospace" font-size="13" fill="#858585">repo2</text>
-    <text x="100" y="45" font-family="Consolas, monospace" font-size="11" fill="#585858">main · dirty · ↑0 ↓0</text>
+    <text x="100" y="45" font-family="Consolas, monospace" font-size="11" fill="#858585">main · dirty · ↑0 ↓0</text>
   </g>
   
   <!-- Description -->
