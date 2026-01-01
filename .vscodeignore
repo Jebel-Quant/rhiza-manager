@@ -1,0 +1,34 @@
+# Build files
+.vscode/**
+.vscode-test/**
+.vscode-test-web/**
+out/**
+src/**
+*.tsbuildinfo
+
+# Development files
+.gitignore
+.github/**
+.eslintrc.json
+eslint.config.mjs
+tsconfig.json
+vsc-extension-quickstart.md
+esbuild.js
+Makefile
+renovate.json
+pnpm-lock.yaml
+
+# Test files
+tests/**
+.vscode-test.mjs
+
+# Documentation
+images/README.md
+
+# Git
+.git
+.gitattributes
+
+# Misc
+**/.DS_Store
+**/Thumbs.db
