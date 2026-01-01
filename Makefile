@@ -38,7 +38,7 @@ test: ## Run tests
 
 lint: ## Run linter
 	@echo "$(GREEN)Running linter...$(NC)"
-	$(PACKAGE_MANAGER) run lint
+	$(PACKAGE_MANAGER) run lint --fix
 
 check-types: ## Run TypeScript type checking
 	@echo "$(GREEN)Running type checking...$(NC)"
