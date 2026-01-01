@@ -22,9 +22,6 @@ pnpm-lock.yaml
 tests/**
 .vscode-test.mjs
 
-# Documentation
-images/README.md
-
 # Git
 .git
 .gitattributes
