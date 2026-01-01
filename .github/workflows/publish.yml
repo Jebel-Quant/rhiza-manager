@@ -1,22 +1,16 @@
 ---
-name: CI
+name: Publish Extension
 
 'on':
   push:
-    branches: [main, master, develop]
-  pull_request:
-    branches: [main, master, develop]
+    tags:
+      - 'v*'
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
+  publish:
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [20.x]
 
     steps:
       - name: Checkout code
@@ -25,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20.x'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -60,8 +54,8 @@ jobs:
 
       - name: Run tests
         run: xvfb-run -a pnpm test
-        if: runner.os == 'Linux'
 
-      - name: Run tests
-        run: pnpm test
-        if: runner.os != 'Linux'
+      - name: Publish to VS Code Marketplace
+        run: pnpm run publish
+        env:
+          VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}

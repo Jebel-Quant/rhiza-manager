@@ -1,6 +1,6 @@
 # Makefile for rhiza-manager VS Code Extension
 
-.PHONY: help install build test lint check-types watch clean update compile all
+.PHONY: help install build test lint check-types watch clean update compile all package publish
 
 # Default target - show help
 .DEFAULT_GOAL := help
@@ -67,3 +67,14 @@ compile: check-types lint build ## Full compilation (type check + lint + build)
 
 all: install compile test ## Install, compile, and test
 	@echo "$(GREEN)All tasks complete!$(NC)"
+
+package: compile ## Package the extension as a VSIX file
+	@echo "$(GREEN)Packaging extension...$(NC)"
+	$(PACKAGE_MANAGER) run package
+	@echo "$(GREEN)Package created successfully!$(NC)"
+
+publish: compile ## Publish the extension to VS Code Marketplace
+	@echo "$(GREEN)Publishing extension...$(NC)"
+	@echo "$(YELLOW)Make sure VSCE_PAT environment variable is set!$(NC)"
+	$(PACKAGE_MANAGER) run publish
+	@echo "$(GREEN)Extension published successfully!$(NC)"

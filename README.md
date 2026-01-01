@@ -2,7 +2,7 @@
 
 A Visual Studio Code extension for managing multiple Rhiza-based Git repositories in your workspace. View the status of all your repositories at a glance and perform bulk operations like pull and fetch across all repos.
 
-![Extension Overview](images/extension-overview.svg)
+![Extension Overview](images/extension-overview.png)
 
 ## Features
 
@@ -10,7 +10,7 @@ A Visual Studio Code extension for managing multiple Rhiza-based Git repositorie
 
 The extension adds a "Rhiza Repositories" view to your Explorer sidebar that displays all Git repositories in your workspace with their current status:
 
-![Tree View](images/tree-view.svg)
+![Tree View](images/tree-view.png)
 
 For each repository, you can see:
 - **Repository name** - The folder name of the repository
@@ -22,13 +22,13 @@ For each repository, you can see:
 
 Click the refresh icon (🔄) in the view title to update the status of all repositories.
 
-![Commands Menu](images/commands-menu.svg)
+![Commands Menu](images/commands-menu.png)
 
 ### ⬇️ Pull All Repositories
 
 Use the "Pull All Repositories" command to pull changes from the remote for all repositories in your workspace. The extension shows a progress notification as it processes each repository.
 
-![Pull Progress](images/pull-progress.svg)
+![Pull Progress](images/pull-progress.png)
 
 ### 🔄 Fetch All Repositories
 
