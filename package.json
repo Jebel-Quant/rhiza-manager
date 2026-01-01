@@ -12,12 +12,48 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "repoManagerView",
+          "name": "Rhiza Repositories"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "rhiza-manager.helloWorld",
-        "title": "Hello World"
+        "command": "repoManager.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "repoManager.pullAll",
+        "title": "Pull All Repositories",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "repoManager.fetchAll",
+        "title": "Fetch All Repositories",
+        "icon": "$(sync)"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "repoManager.refresh",
+          "when": "view == repoManagerView",
+          "group": "navigation"
+        },
+        {
+          "command": "repoManager.pullAll",
+          "when": "view == repoManagerView"
+        },
+        {
+          "command": "repoManager.fetchAll",
+          "when": "view == repoManagerView"
+        }
+      ]
+    }
   },
   "scripts": {
     "build": "node esbuild.js",

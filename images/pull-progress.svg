@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="150" viewBox="0 0 500 150">
+  <!-- Background -->
+  <rect width="500" height="150" fill="#1e1e1e"/>
+  
+  <!-- Progress notification -->
+  <rect x="50" y="30" width="400" height="90" fill="#252526" stroke="#454545" stroke-width="1"/>
+  
+  <!-- Title bar -->
+  <rect x="50" y="30" width="400" height="30" fill="#007acc"/>
+  <text x="60" y="51" font-family="Segoe UI, Arial" font-size="13" fill="#ffffff" font-weight="bold">Pulling all repositories</text>
+  
+  <!-- Progress bar background -->
+  <rect x="70" y="75" width="360" height="8" fill="#3c3c3c" rx="4"/>
+  <!-- Progress bar fill (66% complete) -->
+  <rect x="70" y="75" width="240" height="8" fill="#007acc" rx="4"/>
+  
+  <!-- Status messages -->
+  <g transform="translate(70, 100)">
+    <text x="0" y="0" font-family="Segoe UI, Arial" font-size="11" fill="#89d185">✓ Pulled repo1</text>
+    <text x="0" y="15" font-family="Segoe UI, Arial" font-size="11" fill="#89d185">✓ Pulled repo2</text>
+    <text x="200" y="0" font-family="Segoe UI, Arial" font-size="11" fill="#cccccc">⟳ Pulling repo3...</text>
+  </g>
+</svg>

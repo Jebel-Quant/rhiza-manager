@@ -1,71 +1,133 @@
-# rhiza-manager README
+# Rhiza Manager
 
-This is the README for your extension "rhiza-manager". After writing up a brief description, we recommend including the following sections.
+A Visual Studio Code extension for managing multiple Rhiza-based Git repositories in your workspace. View the status of all your repositories at a glance and perform bulk operations like pull and fetch across all repos.
+
+![Extension Overview](images/extension-overview.svg)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 📊 Repository Status View
 
-For example if there is an image subfolder under your extension project workspace:
+The extension adds a "Rhiza Repositories" view to your Explorer sidebar that displays all Git repositories in your workspace with their current status:
 
-\!\[feature X\]\(images/feature-x.png\)
+![Tree View](images/tree-view.svg)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+For each repository, you can see:
+- **Repository name** - The folder name of the repository
+- **Current branch** - The active Git branch
+- **Clean/Dirty status** - Whether there are uncommitted changes
+- **Commits ahead/behind** - How many commits you are ahead (↑) or behind (↓) the remote branch
+
+### 🔄 Refresh Repository Status
+
+Click the refresh icon (🔄) in the view title to update the status of all repositories.
+
+![Commands Menu](images/commands-menu.svg)
+
+### ⬇️ Pull All Repositories
+
+Use the "Pull All Repositories" command to pull changes from the remote for all repositories in your workspace. The extension shows a progress notification as it processes each repository.
+
+![Pull Progress](images/pull-progress.svg)
+
+### 🔄 Fetch All Repositories
+
+Use the "Fetch All Repositories" command to fetch updates from the remote for all repositories without merging them. This allows you to see what changes are available without modifying your working directory.
+
+## Getting Started
+
+1. **Install the extension** from the VS Code Marketplace
+2. **Open a workspace** containing multiple Git repositories (each repository should be a direct subfolder of your workspace root)
+3. **View your repositories** in the "Rhiza Repositories" section of the Explorer sidebar
+4. **Use the commands** from the view menu (three dots) or toolbar icons
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Visual Studio Code version 1.107.0 or higher
+- Git must be installed and available in your PATH
+- Your workspace should contain one or more Git repositories as direct subfolders
 
-## Extension Settings
+## Commands
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes the following commands:
 
-For example:
+- `Refresh` - Refresh the repository status view
+- `Pull All Repositories` - Pull changes from remote for all repositories
+- `Fetch All Repositories` - Fetch updates from remote for all repositories
 
-This extension contributes the following settings:
+You can access these commands by:
+- Clicking the icons in the "Rhiza Repositories" view toolbar
+- Right-clicking in the "Rhiza Repositories" view
+- Using the Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## How to Use
+
+### Setting Up Your Workspace
+
+For the extension to work properly, your workspace should be organized with Git repositories as direct subfolders:
+
+```
+workspace-root/
+├── repo1/
+│   └── .git/
+├── repo2/
+│   └── .git/
+└── repo3/
+    └── .git/
+```
+
+### Viewing Repository Status
+
+1. Open VS Code with a workspace containing multiple Git repositories
+2. Look for the "RHIZA REPOSITORIES" section in the Explorer sidebar
+3. Each repository will show its name and status information
+
+### Refreshing Status
+
+- Click the refresh icon (🔄) in the view toolbar
+- Or use the Command Palette: "Refresh"
+
+### Pulling All Repositories
+
+1. Click the "Pull All Repositories" button in the view menu (three dots)
+2. Watch the progress notification as each repository is pulled
+3. The view will automatically refresh when complete
+
+### Fetching All Repositories
+
+1. Click the "Fetch All Repositories" button in the view menu (three dots)
+2. Watch the progress notification as each repository is fetched
+3. The view will automatically refresh to show updated ahead/behind counts
+
+## Status Indicators Explained
+
+- **Branch name** (e.g., `main`, `develop`) - The current Git branch
+- **clean** - No uncommitted changes in the working directory
+- **dirty** - There are uncommitted changes (modified, added, or deleted files)
+- **↑N** - Number of commits your local branch is ahead of the remote
+- **↓N** - Number of commits your local branch is behind the remote
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- The extension only detects repositories that are direct subfolders of the workspace root
+- Nested repositories are not currently detected
+- Remote tracking information requires an upstream branch to be set
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release of Rhiza Manager:
+- Tree view showing all Git repositories in workspace
+- Repository status display (branch, dirty/clean, ahead/behind)
+- Pull all repositories command
+- Fetch all repositories command
+- Refresh command
 
 ---
 
-## Following extension guidelines
+## Contributing
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Found a bug or have a feature request? Please open an issue on our [GitHub repository](https://github.com/Jebel-Quant/rhiza-manager).
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy using Rhiza Manager!**
