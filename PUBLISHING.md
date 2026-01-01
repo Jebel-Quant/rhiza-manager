@@ -27,6 +27,15 @@ Before you can publish, you need:
 
 ## Publishing Methods
 
+### Bundling Approach
+
+This extension uses **esbuild** to bundle all code and dependencies into a single `dist/extension.js` file. This approach:
+- Reduces extension size
+- Improves startup performance
+- Eliminates runtime dependency issues
+
+The `--no-dependencies` flag is used in package/publish scripts because all dependencies are already bundled by esbuild (except for the `vscode` module which is provided by VS Code).
+
 ### Automated Publishing (Recommended)
 
 The extension is configured to publish automatically when you push a version tag:
@@ -62,10 +71,13 @@ pnpm run build
 # 4. Package the extension (creates .vsix file)
 pnpm run package
 
-# 5. Publish to marketplace (requires VSCE_PAT environment variable)
+# 5. Publish to marketplace
+# The vsce tool looks for VSCE_PAT environment variable automatically
 export VSCE_PAT=your-personal-access-token
 pnpm run publish
 ```
+
+**Note**: The `vsce` command-line tool automatically reads the Personal Access Token from the `VSCE_PAT` environment variable. You can also pass it directly with `vsce publish --pat YOUR_TOKEN`.
 
 ## Testing Before Publishing
 
