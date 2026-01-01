@@ -1,0 +1,59 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Group all non-major devDependencies updates together",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "devDependencies (non-major)"
+    },
+    {
+      "description": "Group TypeScript and ESLint updates together",
+      "matchPackageNames": ["typescript", "eslint", "typescript-eslint"],
+      "matchPackagePatterns": ["^@typescript-eslint/", "^eslint-"],
+      "groupName": "linting and type-checking"
+    },
+    {
+      "description": "Group VS Code related packages",
+      "matchPackagePatterns": ["^@vscode/", "^@types/vscode"],
+      "groupName": "vscode"
+    },
+    {
+      "description": "Group build tools",
+      "matchPackageNames": ["esbuild", "npm-run-all"],
+      "groupName": "build tools"
+    },
+    {
+      "description": "Group test dependencies",
+      "matchPackagePatterns": ["^@vscode/test-"],
+      "matchPackageNames": ["@types/mocha"],
+      "groupName": "test dependencies"
+    },
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
+  "schedule": [
+    "before 3am on Monday"
+  ],
+  "timezone": "UTC",
+  "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 3am on Monday"]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "rangeStrategy": "bump"
+}
