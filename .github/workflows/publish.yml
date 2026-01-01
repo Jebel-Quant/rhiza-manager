@@ -9,6 +9,8 @@ name: Publish Extension
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
