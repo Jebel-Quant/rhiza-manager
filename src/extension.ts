@@ -72,7 +72,7 @@ class RepoProvider implements vscode.TreeDataProvider<RepoItem> {
 
   async getChildren(): Promise<RepoItem[]> {
     const folders = vscode.workspace.workspaceFolders;
-    if (!folders) return [];
+    if (!folders) {return [];}
 
     const repos: RepoItem[] = [];
 
