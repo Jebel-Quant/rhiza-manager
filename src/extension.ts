@@ -6,7 +6,7 @@ import * as path from "path";
 // --------------------------
 // Helper functions
 // --------------------------
-function runGitCommand(repoPath: string, command: string): Promise<string> {
+export function runGitCommand(repoPath: string, command: string): Promise<string> {
   return new Promise((resolve, reject) => {
     exec(command, { cwd: repoPath }, (err, stdout, stderr) => {
       if (err) {
@@ -18,7 +18,7 @@ function runGitCommand(repoPath: string, command: string): Promise<string> {
   });
 }
 
-async function getRepoStatus(repoPath: string) {
+export async function getRepoStatus(repoPath: string) {
   try {
     const branch = (await runGitCommand(repoPath, "git branch --show-current")) || "detached";
     const dirtyOutput = await runGitCommand(repoPath, "git status --porcelain");
