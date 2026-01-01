@@ -62,9 +62,8 @@ update: ## Update dependencies
 	@echo "$(GREEN)Updating dependencies with $(PACKAGE_MANAGER)...$(NC)"
 	$(PACKAGE_MANAGER) update
 
-compile: ## Full compilation (type check + lint + build)
-	@echo "$(GREEN)Running full compilation...$(NC)"
-	$(PACKAGE_MANAGER) run compile
+compile: check-types lint build ## Full compilation (type check + lint + build)
+	@echo "$(GREEN)Full compilation complete!$(NC)"
 
 all: install compile test ## Install, compile, and test
 	@echo "$(GREEN)All tasks complete!$(NC)"
