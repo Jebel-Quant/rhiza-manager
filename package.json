@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "publisher": "jebel-quant",
   "license": "MIT",
-  "icon": "icon.png",
+  "icon": "assets/rhiza-logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jebel-Quant/rhiza-manager.git"
