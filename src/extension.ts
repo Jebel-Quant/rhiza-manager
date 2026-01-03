@@ -39,6 +39,10 @@ export async function getRepoStatus(repoPath: string) {
   }
 }
 
+export function formatRepoStatus(status: { branch: string; dirty: boolean; ahead: number; behind: number }): string {
+  return `${status.branch} · ${status.dirty ? "dirty" : "clean"} · ↑${status.ahead} ↓${status.behind}`;
+}
+
 // --------------------------
 // TreeItem for each repo
 // --------------------------
@@ -85,9 +89,8 @@ class RepoProvider implements vscode.TreeDataProvider<RepoItem> {
       if (repositoryRoot === 'workspace') {
         if (fs.existsSync(path.join(root, ".git"))) {
           const status = await getRepoStatus(root);
-          const desc = `${status.branch} · ${status.dirty ? "dirty" : "clean"} · ↑${status.ahead} ↓${status.behind}`;
           const repoName = path.basename(root);
-          repos.push(new RepoItem(root, repoName, desc));
+          repos.push(new RepoItem(root, repoName, formatRepoStatus(status)));
         }
       } else {
         // Default behavior: look for repos in subfolders
@@ -95,8 +98,7 @@ class RepoProvider implements vscode.TreeDataProvider<RepoItem> {
           const fullPath = path.join(root, entry);
           if (fs.statSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, ".git"))) {
             const status = await getRepoStatus(fullPath);
-            const desc = `${status.branch} · ${status.dirty ? "dirty" : "clean"} · ↑${status.ahead} ↓${status.behind}`;
-            repos.push(new RepoItem(fullPath, entry, desc));
+            repos.push(new RepoItem(fullPath, entry, formatRepoStatus(status)));
           }
         }
       }
