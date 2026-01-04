@@ -3,6 +3,10 @@
     {
       "name": "rhiza-tools",
       "path": "/Users/HarryCampion/dev/repos/rhiza-tools"
+    },
+    {
+      "name": "rhiza-cli",
+      "path": "/Users/HarryCampion/dev/repos/rhiza-cli"
     }
   ]
 }

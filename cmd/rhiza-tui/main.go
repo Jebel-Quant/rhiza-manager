@@ -302,7 +302,7 @@ func (m model) View() string {
 			statusText = errorStyle.Render("error: " + status.Error)
 		}
 
-		line := fmt.Sprintf("%s %s %s  %s  %s",
+		line := fmt.Sprintf("%s %s %s  %s",
 			cursor,
 			selected,
 			style.Render(status.Name),
