@@ -8,9 +8,11 @@ A Terminal User Interface (TUI) version of Rhiza Manager built with Go. Manage m
   - Current branch
   - Clean/Dirty status
   - Commits ahead/behind remote
+  - Template sync status (commits behind rhiza template)
 - 🔄 **Refresh Status** - Update the status of all repositories
 - ⬇️ **Pull Repositories** - Pull changes from remote for selected repositories
 - 🔄 **Fetch Repositories** - Fetch updates from remote for selected repositories
+- 🔀 **Sync Templates** - Materialize/sync rhiza templates for selected repositories (requires `rhiza` CLI)
 - ✅ **Multi-select** - Select multiple repositories to perform bulk operations
 
 ## Installation
@@ -85,13 +87,15 @@ Or with a custom config path:
 - **r**: Refresh status of all repositories
 - **p**: Pull selected repositories
 - **f**: Fetch selected repositories
+- **s**: Sync/Materialize rhiza templates for selected repositories
 - **q** or **Ctrl+C**: Quit
 
 ### Workflow
 
 1. **Select repositories**: Use arrow keys to navigate and spacebar to select repositories
 2. **Pull or Fetch**: Press `p` to pull or `f` to fetch selected repositories
-3. **Refresh**: Press `r` to refresh the status of all repositories
+3. **Sync Templates**: Press `s` to sync/materialize rhiza templates (requires `rhiza` CLI installed)
+4. **Refresh**: Press `r` to refresh the status of all repositories
 
 ## Status Indicators
 
@@ -100,19 +104,21 @@ Or with a custom config path:
 - **dirty** - There are uncommitted changes
 - **↑N** - Number of commits your local branch is ahead of the remote
 - **↓N** - Number of commits your local branch is behind the remote
+- **template: ↓N** - Number of commits behind the rhiza template (if repository uses rhiza)
+- **template: up-to-date** - Repository is synced with the rhiza template
 
 ## Example
 
 ```
  Rhiza Manager 
 
-> ✓ my-project     main · clean · ↑0 ↓2
-  ✓ another-repo   develop · dirty · ↑1 ↓0
+> ✓ my-project     main · clean · ↑0 ↓2 · template: ↓5
+  ✓ another-repo   develop · dirty · ↑1 ↓0 · template: up-to-date
     third-repo     feature-branch · clean · ↑0 ↓0
 
 Status refreshed
 
-↑/↓: navigate  space: select  r: refresh  p: pull  f: fetch  a: select all  d: deselect all  q: quit
+↑/↓: navigate  space: select  r: refresh  p: pull  f: fetch  s: sync  a: select all  d: deselect all  q: quit
 ```
 
 ## Requirements
@@ -120,6 +126,7 @@ Status refreshed
 - Git must be installed and available in your PATH
 - Each repository path in the config must be a valid Git repository (contain a `.git` directory)
 - Remote tracking information requires an upstream branch to be set
+- For template syncing: `rhiza` CLI must be installed (`pip install rhiza`) or `uvx` available (will use `uvx rhiza`)
 
 ## Differences from VS Code Extension
 
