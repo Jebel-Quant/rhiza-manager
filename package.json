@@ -2,7 +2,7 @@
   "name": "rhiza-manager",
   "displayName": "Rhiza-Manager",
   "description": "Manage Rhiza based repos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "jebel-quant",
   "license": "MIT",
   "repository": {
