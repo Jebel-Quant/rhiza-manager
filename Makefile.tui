@@ -1,0 +1,13 @@
+# Makefile for Rhiza TUI
+
+.PHONY: build-tui install-tui clean-tui
+
+build-tui:
+	go build -o rhiza-tui ./cmd/rhiza-tui
+
+install-tui:
+	go install ./cmd/rhiza-tui
+
+clean-tui:
+	rm -f rhiza-tui
+
