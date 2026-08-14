@@ -31,6 +31,20 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Rhiza Manager",
+      "properties": {
+        "rhizaManager.repositoryRoot": {
+          "type": "string",
+          "enum": [
+            "workspace",
+            "subfolders"
+          ],
+          "default": "subfolders",
+          "description": "Where to look for repositories: 'workspace' treats workspace folders as repositories (for multi-root workspaces), 'subfolders' looks for repositories in subdirectories of workspace folders"
+        }
+      }
+    },
     "views": {
       "explorer": [
         {

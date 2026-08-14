@@ -37,15 +37,16 @@ Use the "Fetch All Repositories" command to fetch updates from the remote for al
 ## Getting Started
 
 1. **Install the extension** from the VS Code Marketplace
-2. **Open a workspace** containing multiple Git repositories (each repository should be a direct subfolder of your workspace root)
-3. **View your repositories** in the "Rhiza Repositories" section of the Explorer sidebar
-4. **Use the commands** from the view menu (three dots) or toolbar icons
+2. **Open a workspace** containing multiple Git repositories
+3. **Configure the repository detection mode** (see Configuration section below)
+4. **View your repositories** in the "Rhiza Repositories" section of the Explorer sidebar
+5. **Use the commands** from the view menu (three dots) or toolbar icons
 
 ## Requirements
 
 - Visual Studio Code version 1.107.0 or higher
 - Git must be installed and available in your PATH
-- Your workspace should contain one or more Git repositories as direct subfolders
+- Your workspace should contain one or more Git repositories
 
 ## Commands
 
@@ -60,11 +61,65 @@ You can access these commands by:
 - Right-clicking in the "Rhiza Repositories" view
 - Using the Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
 
+## Configuration
+
+The extension provides a configuration setting to control how it detects repositories:
+
+### `rhizaManager.repositoryRoot`
+
+Controls where the extension looks for Git repositories. Choose the mode that matches your workspace setup:
+
+- **`subfolders`** (default) - Looks for Git repositories in subdirectories of each workspace folder. Use this for traditional workspace setups where repositories are organized as subfolders.
+  
+  Example workspace structure:
+  ```
+  workspace-root/
+  ├── repo1/
+  │   └── .git/
+  ├── repo2/
+  │   └── .git/
+  └── repo3/
+      └── .git/
+  ```
+
+- **`workspace`** - Treats each workspace folder itself as a Git repository. Use this for multi-root workspaces where each folder is already a repository.
+  
+  Example `.code-workspace` file:
+  ```json
+  {
+    "folders": [
+      {
+        "path": "../repos/rhiza"
+      },
+      {
+        "path": "../repos/rhiza-cli"
+      },
+      {
+        "path": "../repos/rhiza-tools"
+      }
+    ],
+    "settings": {
+      "rhizaManager.repositoryRoot": "workspace"
+    }
+  }
+  ```
+
+To change this setting:
+1. Open VS Code Settings (File > Preferences > Settings or Ctrl+,)
+2. Search for "Rhiza Manager"
+3. Select your preferred mode from the "Repository Root" dropdown
+
+Alternatively, you can set this in your workspace settings file (`.code-workspace`) as shown in the example above.
+
 ## How to Use
 
 ### Setting Up Your Workspace
 
-For the extension to work properly, your workspace should be organized with Git repositories as direct subfolders:
+The extension supports two workspace configurations:
+
+**Option 1: Subfolders mode (default)**
+
+Organize your workspace with Git repositories as direct subfolders:
 
 ```
 workspace-root/
@@ -75,6 +130,24 @@ workspace-root/
 └── repo3/
     └── .git/
 ```
+
+**Option 2: Workspace mode**
+
+Use a multi-root workspace where each workspace folder is itself a repository:
+
+```json
+{
+  "folders": [
+    { "path": "../repos/rhiza" },
+    { "path": "../repos/rhiza-cli" },
+    { "path": "../repos/rhiza-tools" }
+  ],
+  "settings": {
+    "rhizaManager.repositoryRoot": "workspace"
+  }
+}
+```
+
 
 ### Viewing Repository Status
 
@@ -109,9 +182,8 @@ workspace-root/
 
 ## Known Issues
 
-- The extension only detects repositories that are direct subfolders of the workspace root
-- Nested repositories are not currently detected
 - Remote tracking information requires an upstream branch to be set
+- In 'subfolders' mode, nested repositories beyond the first level are not detected
 
 ## Release Notes
 
